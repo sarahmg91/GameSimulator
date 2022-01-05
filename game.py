@@ -1,5 +1,5 @@
 ### This file will be used to set up the individual game ##
-
+from random import *
 ## Inputs
 
 ## Class set up
@@ -14,7 +14,7 @@ class CardSuit:
         self.winner = False
 
     def playCard(self):
-        self.playedCards = self.PlayedCards + 1
+        self.playedCards = self.playedCards + 1
         self.availableCards = self.availableCards - 1
 
 class CardDeck:
@@ -34,28 +34,32 @@ class CardDeck:
             self.deckTotal = self.deckTotal + card.totalCards
             self.availableCards = self.availableCards + card.availableCards
 
-    def playCard(self):
-        pass
+    def playCard(self, card):
+        self.playedCards = self.playedCards + 1
+        self.availableCards = self.availableCards - 1
+        self.cardList[card].playCard()
+
+    def selectCard(self):
+        randSelection = randint(0,self.availableCards-1)
+        iteration = 0
+        #print("rand # selected : " + str(randSelection))
+
+        for cardKey in self.cardList:
+            availableCards = self.cardList[cardKey].availableCards
+            if availableCards > 0 and randSelection <= availableCards + iteration - 1:
+                self.playCard(cardKey)
+                #print("selected card type : "+ cardKey)
+                return cardKey
+
+            else:
+                iteration = iteration + self.cardList[cardKey].availableCards
+            #    print("I am at : " + str(iteration) + " iteration after suit " + cardKey)
+
         ## TODO: Issue number #2
         ## sets up the play suits
 
-
-
 ## Practice Area ##
 
-cardTest = CardSuit(10, "trumps")
-cardTest2 = CardSuit(5, "spades")
-cardTest3 = CardSuit(2, "diamond")
-
-
-list = []
-list.append(cardTest)
-list.append(cardTest2)
-list.append(cardTest3)
-
-practiceDeck = CardDeck(list)
-print(practiceDeck.cardList)
-print(practiceDeck.deckTotal)
 
 
 
