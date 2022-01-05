@@ -27,7 +27,18 @@ class CardDeck:
 
         for card in cardList:
             # cards must be of a class CardSuit, they also need to be unique. Force this somehow.
+            self.addDeck(card)
+
+    def addDeck(card):
             self.cardList[card.name] = card
+            self.deckTotal = self.deckTotal + card.totalCards
+            self.availableCards = self.availableCards + card.availableCards
+
+    def playCard(self):
+        pass
+        ## TODO: Issue number #2
+        ## sets up the play suits
+
 
 
 ## Practice Area ##
