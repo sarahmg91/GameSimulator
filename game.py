@@ -29,7 +29,7 @@ class CardDeck:
             # cards must be of a class CardSuit, they also need to be unique. Force this somehow.
             self.addDeck(card)
 
-    def addDeck(card):
+    def addDeck(self, card):
             self.cardList[card.name] = card
             self.deckTotal = self.deckTotal + card.totalCards
             self.availableCards = self.availableCards + card.availableCards
@@ -44,12 +44,18 @@ class CardDeck:
 ## Practice Area ##
 
 cardTest = CardSuit(10, "trumps")
+cardTest2 = CardSuit(5, "spades")
+cardTest3 = CardSuit(2, "diamond")
+
 
 list = []
 list.append(cardTest)
+list.append(cardTest2)
+list.append(cardTest3)
 
 practiceDeck = CardDeck(list)
 print(practiceDeck.cardList)
+print(practiceDeck.deckTotal)
 
 
 
